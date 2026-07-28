@@ -68,6 +68,7 @@
         <a href="#informacoes">INFORMAÇÕES</a>
         <a href="#kit">KIT</a>
         <a href="#percursos">PERCURSOS</a>
+        <a href="#retirada">RETIRADA</a>
         <a href="#regulamento">REGULAMENTO</a>
       </nav>
     </header>
@@ -197,11 +198,30 @@
       </div>
     </section>
 
+    <!-- ============ RETIRADA DE KIT ============ -->
+    <section class="section-pickup" id="retirada" data-screen-label="07 Retirada de Kit">
+      <div class="pickup-wrap">
+        <div class="pickup-title display display-up">Retire seu kit</div>
+        <div class="pickup-images">
+          <img
+            src="assets-aracaju/retirada-kit-1.png"
+            alt="Retirada de kit em Aracaju: dias 30 e 31 de julho das 10h às 20h e 1º de agosto das 10h às 17h, no Mix Mateus Santa Mônica, Av. João Rodrigues, 582 - Bairro Industrial"
+            loading="lazy"
+          />
+          <img
+            src="assets-aracaju/retirada-kit-2.png"
+            alt="Atenção atletas: a retirada pode ser feita por terceiros mediante documentação do atleta inscrito; quem não retirar nos dias e horários definidos perde o direito ao kit. Não haverá entrega no dia do evento ou posteriormente."
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+
     <!-- ============ INFO PROVA ============ -->
     <section
       class="section-info"
       id="regulamento"
-      data-screen-label="07 Informações de Prova"
+      data-screen-label="08 Informações de Prova"
     >
       <div class="info-card">
         <h2 class="info-title">Informações de Prova</h2>
@@ -256,7 +276,23 @@
           </div>
           <div class="info-panel" id="p-kit">
             <h4>Retirada de Kit</h4>
-            <p>Em breve</p>
+            <p>
+              <strong>Dias:</strong> 30 e 31 de julho (10h às 20h) e 1º de
+              agosto (10h às 17h)
+            </p>
+            <p>
+              <strong>Local:</strong> Mix Mateus Santa Mônica — Av. João
+              Rodrigues, 582 — Bairro Industrial
+            </p>
+            <p>
+              A retirada pode ser feita por terceiros, desde que seja
+              apresentada a documentação do atleta inscrito.
+            </p>
+            <p>
+              O atleta que não retirar o kit nos dias e horários definidos
+              perderá o direito de recebê-lo. Não haverá entrega no dia do
+              evento ou posteriormente.
+            </p>
           </div>
         </div>
         <a
@@ -270,7 +306,7 @@
       </div>
     </section>
 
-    <section class="section-partners" data-screen-label="08 Parceiros">
+    <section class="section-partners" data-screen-label="09 Parceiros">
       <div class="partners-wrap">
         <div class="partners-title">Marcas Parceiras</div>
         <div class="partners-grid">
@@ -309,7 +345,7 @@
     </section>
 
     <!-- ============ FOOTER ============ -->
-    <footer class="footer" data-screen-label="09 Footer">
+    <footer class="footer" data-screen-label="10 Footer">
       Powered by PisaSports &amp; Prensa Marketing Esportivo
     </footer>
 
@@ -451,11 +487,15 @@
 
       // ---------- Active nav link on scroll ----------
       const navLinks = document.querySelectorAll(".nav a");
-      const sections = ["informacoes", "kit", "percursos", "regulamento"].map(
-        (id) => document.getElementById(id),
-      );
+      const sections = [
+        "informacoes",
+        "kit",
+        "percursos",
+        "retirada",
+        "regulamento",
+      ].map((id) => document.getElementById(id));
       function syncNav() {
-        const y = window.scrollY + 120;
+        const y = window.scrollY + 80;
         let activeId = sections[0]?.id;
         for (const s of sections) {
           if (s && s.offsetTop <= y) activeId = s.id;
@@ -470,7 +510,8 @@
       window.addEventListener("scroll", syncNav, { passive: true });
       syncNav();
 
-      // smooth anchor scroll
+      // smooth anchor scroll — positive extra scrolls further into the section
+      const NAV_SCROLL_EXTRA = 48;
       navLinks.forEach((a) =>
         a.addEventListener("click", (e) => {
           const href = a.getAttribute("href");
@@ -478,7 +519,10 @@
             e.preventDefault();
             const el = document.querySelector(href);
             if (el) {
-              window.scrollTo({ top: el.offsetTop - 60, behavior: "smooth" });
+              window.scrollTo({
+                top: Math.max(0, el.offsetTop + NAV_SCROLL_EXTRA),
+                behavior: "smooth",
+              });
             }
           }
         }),

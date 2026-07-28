@@ -31,7 +31,9 @@
   }
   .nav {
     display: flex;
-    gap: 56px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 40px;
     font-family: "Barlow", sans-serif;
     font-style: italic;
     font-weight: 700;
@@ -342,6 +344,31 @@
   }
   @keyframes spin{to{transform:rotate(360deg)}}
 
+  /* ---------- RETIRADA DE KIT ---------- */
+  .section-pickup{
+    background:#FBF1EE;
+    padding:80px 24px;
+  }
+  .pickup-wrap{
+    max-width:1180px;margin:0 auto;
+    display:flex;flex-direction:column;
+    gap:28px;align-items:center;
+  }
+  .pickup-title{
+    font-size:clamp(56px,9vw,120px);
+    line-height:.95;color:var(--red);
+    text-align:center;
+  }
+  .pickup-images{
+    width:100%;
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;
+  }
+  .pickup-images img{
+    width:100%;height:auto;display:block;
+    border-radius:16px;
+    box-shadow:0 12px 30px rgba(192,0,15,0.18);
+  }
+
   /* ---------- INFO PROVA ---------- */
   .section-info{
     background:#fff;
@@ -562,7 +589,7 @@
   /* responsive */
   @media (max-width: 900px){
     .topbar{padding:22px 28px}
-    .nav{gap:24px;font-size:13px}
+    .nav{gap:16px 20px;font-size:12px;justify-content:center}
     .kit-row{grid-template-columns:minmax(0,1.05fr) minmax(0,0.95fr);gap:12px;align-items:center}
     .kit-buttons{max-width:none}
     .kit-img img{max-width:320px}
@@ -577,6 +604,7 @@
     .section-story{background:var(--red)}
     .map-panel{grid-template-columns:1fr}
     .info-grid{grid-template-columns:1fr}
+    .pickup-images{grid-template-columns:1fr;gap:18px}
     .kit-img img.kit-aracaju{max-height:404px}
     .section-partners{padding:44px 24px 52px}
     .partners-grid{grid-template-columns:repeat(2,1fr);gap:18px}
@@ -620,6 +648,9 @@
     .map-tab{font-size:16px;padding:6px 20px;margin-bottom:8px}
     .map-route .row{margin:3px 0}
     .map-embed{margin:8px 0}
+    .section-pickup{padding:42px 12px}
+    .pickup-wrap{gap:16px}
+    .pickup-title{font-size:clamp(44px,13vw,56px)}
     .section-partners{padding:36px 18px 44px}
     .partners-title{font-size:12px;letter-spacing:0.14em;margin:0 0 22px;padding-bottom:12px;text-align:center}
     .partners-grid{gap:10px 14px}
