@@ -19,8 +19,8 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT_DIR = ROOT / "assets" / "docs"
 
 SOURCES = {
-    "regulamento-mateus-etapa-aracaju-2026.pdf": Path(
-        "/Users/eduardoklein/Downloads/REGULAMENTO-ARACAJU-MATEUS.docx"
+    "regulamento-aracaju-2026.pdf": Path(
+        "/Users/eduardoklein/Downloads/REGULAMENTO-ARACAJU-2026-v6.docx"
     ),
     "regulamento-mateus-etapa-balsas-2026.pdf": Path(
         "/Users/eduardoklein/Downloads/REGULAMENTO-BALSAS- MATEUS.docx"
