@@ -357,6 +357,10 @@
           openWithToken("balsas-landing.html");
           return;
         }
+        if (name === "São Luís") {
+          openWithToken("sao-luis-landing.html");
+          return;
+        }
         if (name === "Teresina") {
           openWithToken("teresina-landing.html");
           return;
@@ -369,7 +373,7 @@
         openWithToken("cidade.html", { cidade: name, slug: slug });
       }
 
-      var CITY_ORDER = ["Aracaju", "Balsas", "Teresina"];
+      var CITY_ORDER = ["Aracaju", "Balsas", "São Luís", "Teresina"];
       var CITIES = {
         Aracaju: {
           label: "ARACAJU",
@@ -384,6 +388,12 @@
           page: "balsas-landing.html",
           regulamento: "assets/docs/regulamento-mateus-etapa-balsas-2026.pdf",
         },
+        "São Luís": {
+          label: "SÃO LUÍS",
+          kit: "assets/assets-sao-luis/CAMISAS.png",
+          page: "sao-luis-landing.html",
+          regulamento: "assets/docs/regulamento-sao-luis-2026.pdf",
+        },
         Teresina: {
           label: "TERESINA",
           kit: "assets/assets-teresina/CAMISAS.png",
@@ -396,6 +406,7 @@
       var KIT_CANVAS = {
         Aracaju: { w: 499, h: 645, contentCenterY: 322 },
         Balsas: { w: 504, h: 636, contentCenterY: 318 },
+        "São Luís": { w: 506, h: 638, contentCenterY: 319 },
         Teresina: { w: 507, h: 639, contentCenterY: 320 },
       };
 
