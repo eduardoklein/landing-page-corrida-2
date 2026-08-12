@@ -350,7 +350,6 @@
       }
       function openCity(name) {
         if (name === "Aracaju") {
-          openWithToken("aracaju-landing.html");
           return;
         }
         if (name === "Balsas") {
@@ -383,7 +382,7 @@
           label: "ARACAJU",
           kit: "assets-aracaju/camisa.png",
           kitExtraScale: 0.977,
-          page: "aracaju-landing.html",
+          page: null,
           regulamento: "assets/docs/regulamento-aracaju-2026.pdf",
         },
         Balsas: {
@@ -472,9 +471,12 @@
         var city = CITIES[selectedCity];
         var currentBtn = document.getElementById("city-current-btn");
         currentBtn.querySelector(".city-current-label").textContent = city.label;
-        currentBtn.onclick = function () {
-          openWithToken(city.page);
-        };
+        currentBtn.onclick = city.page
+          ? function () {
+              openWithToken(city.page);
+            }
+          : null;
+        currentBtn.style.cursor = city.page ? "pointer" : "default";
 
         var kitImg = document.getElementById("kit-preview-img");
         var suf = window.__ASSET_SUFFIX || "";
