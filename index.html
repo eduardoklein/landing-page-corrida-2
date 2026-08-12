@@ -365,6 +365,10 @@
           openWithToken("teresina-landing.html");
           return;
         }
+        if (name === "Belém") {
+          openWithToken("belem-landing.html");
+          return;
+        }
         var slug = name
           .toLowerCase()
           .normalize("NFD")
@@ -373,7 +377,7 @@
         openWithToken("cidade.html", { cidade: name, slug: slug });
       }
 
-      var CITY_ORDER = ["Aracaju", "Balsas", "São Luís", "Teresina"];
+      var CITY_ORDER = ["Aracaju", "Balsas", "São Luís", "Teresina", "Belém"];
       var CITIES = {
         Aracaju: {
           label: "ARACAJU",
@@ -400,6 +404,12 @@
           page: "teresina-landing.html",
           regulamento: "assets/docs/regulamento-mateus-etapa-teresina-2026.pdf",
         },
+        Belém: {
+          label: "BELÉM",
+          kit: "assets/assets-belem/CAMISAS.png",
+          page: "belem-landing.html",
+          regulamento: "assets/docs/regulamento-mateus-etapa-belem-2026.pdf",
+        },
       };
       var selectedCity = "Aracaju";
       var KIT_REF_SIZE = { w: 504, h: 636, contentCenterY: 318 };
@@ -408,6 +418,7 @@
         Balsas: { w: 504, h: 636, contentCenterY: 318 },
         "São Luís": { w: 506, h: 638, contentCenterY: 319 },
         Teresina: { w: 507, h: 639, contentCenterY: 320 },
+        Belém: { w: 488, h: 640, contentCenterY: 320 },
       };
 
       function getKitBoxHeight() {
