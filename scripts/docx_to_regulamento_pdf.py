@@ -25,6 +25,9 @@ SOURCES = {
     "regulamento-mateus-etapa-balsas-2026.pdf": Path(
         "/Users/eduardoklein/Downloads/REGULAMENTO-BALSAS- MATEUS.docx"
     ),
+    "regulamento-mateus-etapa-belem-2026.pdf": Path(
+        "/Users/eduardoklein/Downloads/REGULAMENTO-BELEM-2026-v4.docx"
+    ),
     "regulamento-sao-luis-2026.pdf": Path(
         "/Users/eduardoklein/Downloads/REGULAMENTO-SAO-LUIS-2026-v5.docx"
     ),
