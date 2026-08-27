@@ -400,7 +400,7 @@
           label: "TERESINA",
           kit: "assets/assets-teresina/CAMISAS.png",
           page: "teresina-landing.html",
-          regulamento: "assets/docs/regulamento-mateus-etapa-teresina-2026.pdf",
+          regulamento: "assets/docs/Regulamento Teresina 2026.pdf",
         },
         Belém: {
           label: "BELÉM",
@@ -537,7 +537,7 @@
         var suf = window.__ASSET_SUFFIX || "";
         var link = document.createElement("a");
         link.href = city.regulamento + suf;
-        link.download = "";
+        link.download = city.regulamento.split("/").pop() || "";
         document.body.appendChild(link);
         link.click();
         link.remove();

@@ -31,8 +31,8 @@ SOURCES = {
     "regulamento-sao-luis-2026.pdf": Path(
         "/Users/eduardoklein/Downloads/REGULAMENTO-SAO-LUIS-2026-v5.docx"
     ),
-    "regulamento-mateus-etapa-teresina-2026.pdf": Path(
-        "/Users/eduardoklein/Downloads/REGULAMENTO-TERESINA-MATEUS.docx"
+    "Regulamento Teresina 2026.pdf": Path(
+        "/Users/eduardoklein/Downloads/REGULAMENTO-TERESINA-2026-v2.docx"
     ),
 }
 
