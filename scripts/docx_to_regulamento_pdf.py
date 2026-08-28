@@ -34,6 +34,9 @@ SOURCES = {
     "Regulamento Teresina 2026.pdf": Path(
         "/Users/eduardoklein/Downloads/REGULAMENTO-TERESINA-2026-v2.docx"
     ),
+    "Regulamento Fortaleza 2026.pdf": Path(
+        "/Users/eduardoklein/Downloads/REGULAMENTO-FORTALEZA-2026-v1.docx"
+    ),
 }
 
 
