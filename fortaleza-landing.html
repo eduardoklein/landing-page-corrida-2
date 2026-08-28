@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Etapa Fortaleza — Corrida Mateus 2026</title>
+    <script>
+      // Preview-auth: when the iframe URL has a ?t=... token, relative asset URLs lose it
+      // on resolution and 401. Reapply it to every asset URL we generate.
+      (function () {
+        var t = new URL(location.href).searchParams.get("t");
+        if (!t) return;
+        window.__withT = function (u) {
+          try {
+            var x = new URL(u, location.href);
+            x.searchParams.set("t", t);
+            return x.toString();
+          } catch (e) {
+            return u;
+          }
+        };
+        // Rewrite <img src> and CSS url(...) at parse time via a MutationObserver.
+        function fix(el) {
+          if (
+            el.tagName === "IMG" &&
+            el.getAttribute("src") &&
+            !el.src.includes("t=")
+          ) {
+            el.src = window.__withT(el.getAttribute("src"));
+          }
+          if (
+            el.tagName === "LINK" &&
+            el.rel === "stylesheet" &&
+            el.getAttribute("href") &&
+            !el.href.includes("t=")
+          ) {
+            el.href = window.__withT(el.getAttribute("href"));
+          }
+        }
+        new MutationObserver(function (muts) {
+          muts.forEach(function (m) {
+            m.addedNodes.forEach(function (n) {
+              if (n.nodeType !== 1) return;
+              fix(n);
+              n.querySelectorAll && n.querySelectorAll("img").forEach(fix);
+            });
+          });
+        }).observe(document.documentElement, {
+          childList: true,
+          subtree: true,
+        });
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,700;1,700&family=Saira+Condensed:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Saira:ital,wght@0,400;0,500;0,600;0,700;1,700;1,800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <link rel="stylesheet" href="aracaju-landing.css" />
+  </head>
+  <body class="page-city">
+    <!-- ============ NAV ============ -->
+    <header class="topbar" data-screen-label="Nav">
+      <nav class="nav" aria-label="Primária">
+        <a href="#informacoes">INFORMAÇÕES</a>
+        <a href="#kit">KIT</a>
+        <a href="#percursos">PERCURSOS</a>
+        <a href="#regulamento">REGULAMENTO</a>
+        <a
+          class="nav-cta"
+          href="https://www.evenyx.com/corrida-mateus-circuito-40-anos-fortaleza"
+          data-signup-trigger
+          target="_blank"
+          rel="noopener noreferrer"
+          >Inscreva-se</a
+        >
+      </nav>
+    </header>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="informacoes" data-screen-label="01 Hero Fortaleza">
+      <img
+        src="assets/assets-fortaleza/ABA 1_FORTALEZA.png"
+        alt="Fortaleza — Onde o nosso coração dá o primeiro passo. Rumo aos 40 anos."
+      />
+    </section>
+
+    <!-- ============ DATE BAR ============ -->
+    <section class="date-bar date-bar--image" data-screen-label="02 Date bar">
+      <img
+        src="assets/assets-fortaleza/ABA 2_DATA.png"
+        alt="Fortaleza — 18 de Outubro — 5KM e 10KM"
+      />
+    </section>
+
+    <!-- ============ KIT ============ -->
+    <section class="section-kit" id="kit" data-screen-label="03 Kit & price">
+      <div class="kit-row">
+        <div class="kit-img">
+          <img
+            src="assets/assets-fortaleza/CAMISAS.png"
+            alt="Kit do corredor: camisa, medalha e número de peito"
+          />
+        </div>
+        <div class="kit-buttons">
+          <button class="price-pill" data-distance="5">
+            <span class="km">5KM</span>
+            <span class="label">por R$</span>
+            <span class="price">139,00</span>
+          </button>
+          <button class="price-pill" data-distance="10">
+            <span class="km">10KM</span>
+            <span class="label">por R$</span>
+            <span class="price">139,00</span>
+          </button>
+          <a
+            class="kit-cta"
+            href="https://www.evenyx.com/corrida-mateus-circuito-40-anos-fortaleza"
+            data-signup-trigger
+            target="_blank"
+            rel="noopener noreferrer"
+            >Inscreva-se agora</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STORY ============ -->
+    <section class="section-story" data-screen-label="04 Story">
+      <img
+        src="assets-aracaju/corredora-banner-inteiro.png"
+        alt="Corredora em destaque"
+      />
+    </section>
+
+    <!-- ============ COUNTDOWN ============ -->
+    <section class="countdown" data-screen-label="05 Countdown">
+      <div class="countdown-label"><span>FALTAM</span></div>
+      <div class="countdown-row">
+        <div class="cd-unit">
+          <div class="label">Dias</div>
+          <div class="value" id="cd-days">00</div>
+        </div>
+        <div class="cd-unit">
+          <div class="label">Horas</div>
+          <div class="value" id="cd-hours">00</div>
+        </div>
+        <div class="cd-unit">
+          <div class="label">Min</div>
+          <div class="value" id="cd-mins">00</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MAP ============ -->
+    <section class="section-map" id="percursos" data-screen-label="06 Mapa">
+      <div class="map-wrap">
+        <div class="map-title display display-up">Mapa</div>
+        <div class="map-panel">
+          <div class="map-route">
+            <span class="map-tab">5KM</span>
+            <div class="row"><strong>Largada:</strong> Em breve</div>
+            <div class="map-loading">
+              <span class="spinner"></span> Carregando
+            </div>
+            <div class="row"><strong>Chegada:</strong> Em breve</div>
+          </div>
+          <div class="map-route">
+            <span class="map-tab">10KM</span>
+            <div class="row"><strong>Largada:</strong> Em breve</div>
+            <div class="map-loading">
+              <span class="spinner"></span> Carregando
+            </div>
+            <div class="row"><strong>Chegada:</strong> Em breve</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ INFO PROVA ============ -->
+    <section
+      class="section-info"
+      id="regulamento"
+      data-screen-label="07 Informações de Prova"
+    >
+      <div class="info-card">
+        <h2 class="info-title">Informações de Prova</h2>
+        <div class="info-grid" id="info-grid">
+          <div class="info-item-wrap">
+            <button class="info-item" data-panel="p-gerais">
+              <span class="chev"></span>
+              <span>Informações Gerais</span>
+            </button>
+          </div>
+          <div class="info-item-wrap">
+            <button class="info-item" data-panel="p-especiais">
+              <span class="chev"></span>
+              <span>Inscrições Especiais</span>
+            </button>
+          </div>
+          <div class="info-item-wrap">
+            <button class="info-item" data-panel="p-kit">
+              <span class="chev"></span>
+              <span>Retirada de Kit</span>
+            </button>
+          </div>
+          <div class="info-item-wrap">
+            <button class="info-item" data-panel="p-regulamento">
+              <span class="chev"></span>
+              <span>Regulamento</span>
+            </button>
+          </div>
+
+          <!-- Panels -->
+          <div class="info-panel" id="p-gerais">
+            <h4>Informações Gerais</h4>
+            <p><strong>Data:</strong> 18 de Outubro de 2026</p>
+            <p><strong>Local:</strong> Fortaleza — Em breve</p>
+            <p><strong>Horário de largada:</strong> 6h</p>
+            <p><strong>Modalidades:</strong> Corrida individual 5km e 10km.</p>
+          </div>
+          <div class="info-panel" id="p-especiais">
+            <h4>Inscrições Especiais</h4>
+            <p>
+              Idosos (60+) e PCD têm direito a desconto de 50% mediante
+              apresentação de documento válido.
+            </p>
+            <p>
+              Colaboradores Mateus possuem condição exclusiva — utilize o cupom
+              no momento da inscrição.
+            </p>
+          </div>
+          <div class="info-panel" id="p-kit">
+            <h4>Retirada de Kit</h4>
+            <p>Em breve</p>
+          </div>
+          <div class="info-panel" id="p-regulamento">
+            <h4>Regulamento</h4>
+            <p>Em breve</p>
+          </div>
+        </div>
+        <a
+          class="info-cta"
+          href="https://www.evenyx.com/corrida-mateus-circuito-40-anos-fortaleza"
+          data-signup-trigger
+          target="_blank"
+          rel="noopener noreferrer"
+          >Inscreva-se já</a
+        >
+      </div>
+    </section>
+
+    <section class="section-partners" data-screen-label="08 Parceiros">
+      <div class="partners-wrap">
+        <div class="partners-title">Marcas Parceiras</div>
+        <div class="partners-grid">
+          <div class="partner-logo">
+            <img src="assets/parceiros/doritos.png" alt="Doritos" />
+          </div>
+          <div class="partner-logo">
+            <img src="assets/parceiros/michelob.png" alt="Michelob Ultra" />
+          </div>
+          <div class="partner-logo">
+            <img src="assets/parceiros/powerade.png" alt="Powerade" />
+          </div>
+          <div class="partner-logo">
+            <img src="assets/parceiros/pilao.png" alt="Pilão" />
+          </div>
+          <div class="partner-logo">
+            <img src="assets/parceiros/marata.png" alt="Maratá" />
+          </div>
+          <div class="partner-logo">
+            <img src="assets/parceiros/omo.png" alt="Omo" />
+          </div>
+          <div class="partner-logo">
+            <img src="assets/parceiros/rexona.png" alt="Rexona" />
+          </div>
+          <div class="partner-logo">
+            <img
+              src="assets/parceiros/piracanjuba-pro-force.png"
+              alt="Piracanjuba Pro Force"
+            />
+          </div>
+          <div class="partner-logo">
+            <img src="assets/parceiros/gatorade.png" alt="Gatorade" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer" data-screen-label="09 Footer">
+      Powered by PisaSports &amp; Prensa Marketing Esportivo
+    </footer>
+
+    <div class="toast" id="toast">Inscrição aberta — redirecionando…</div>
+
+    <div class="signup-modal" id="signup-modal" hidden>
+      <div class="signup-modal__backdrop" data-signup-close></div>
+      <div
+        class="signup-modal__card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="signup-modal-title"
+      >
+        <button
+          class="signup-modal__close"
+          type="button"
+          aria-label="Fechar"
+          data-signup-close
+        >
+          ×
+        </button>
+        <h3 id="signup-modal-title">Escolha sua inscrição</h3>
+        <p>Selecione a modalidade de venda para continuar.</p>
+        <div class="signup-modal__actions">
+          <a
+            href="https://www.evenyx.com/corrida-mateus-circuito-40-anos-fortaleza"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Venda Geral</a
+          >
+          <a
+            href="https://www.evenyx.com/corrida-mateus-circuito-40-anos-fortaleza-colaborador"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Venda Colaborador</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // ---------- Fix CSS background-image URLs with token ----------
+      if (window.__withT) {
+        document.documentElement.style.setProperty(
+          "--bg-dots-url",
+          "url(" + window.__withT("assets-aracaju/bg-dots.png") + ")",
+        );
+        document.documentElement.style.setProperty(
+          "--corredora-url",
+          "url(" + window.__withT("assets-aracaju/corredora.png") + ")",
+        );
+      }
+
+      // ---------- Countdown ----------
+      // Race: 18 Oct 2026, 06:00 BRT (UTC-3)
+      const target = new Date("2026-10-18T06:00:00-03:00").getTime();
+      const pad = (n) => String(Math.max(0, n)).padStart(2, "0");
+      function tick() {
+        const now = Date.now();
+        let diff = Math.max(0, target - now);
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        diff -= days * 1000 * 60 * 60 * 24;
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        diff -= hours * 1000 * 60 * 60;
+        const mins = Math.floor(diff / (1000 * 60));
+        document.getElementById("cd-days").textContent = pad(days);
+        document.getElementById("cd-hours").textContent = pad(hours);
+        document.getElementById("cd-mins").textContent = pad(mins);
+      }
+      tick();
+      setInterval(tick, 1000 * 30);
+
+      // ---------- Price pill selection ----------
+      const pills = document.querySelectorAll(".price-pill");
+      pills.forEach((p) =>
+        p.addEventListener("click", () => {
+          pills.forEach((x) => x.classList.remove("selected"));
+          p.classList.add("selected");
+        }),
+      );
+      // default selection
+      pills[0]?.classList.add("selected");
+
+      // ---------- Accordion (single open at a time) ----------
+      const items = document.querySelectorAll(".info-item");
+      const panels = document.querySelectorAll(".info-panel");
+      items.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const id = btn.dataset.panel;
+          const panel = document.getElementById(id);
+          const open = btn.classList.contains("open");
+          items.forEach((b) => b.classList.remove("open"));
+          panels.forEach((p) => p.classList.remove("open"));
+          if (!open) {
+            btn.classList.add("open");
+            panel.classList.add("open");
+            // place panel directly after its row visually by reordering
+            panel.style.order = "99";
+          }
+        });
+      });
+
+      // ---------- CTAs toast ----------
+      const toast = document.getElementById("toast");
+      let toastTimer;
+      document.querySelectorAll("[data-cta]").forEach((b) => {
+        b.addEventListener("click", () => {
+          toast.classList.add("show");
+          clearTimeout(toastTimer);
+          toastTimer = setTimeout(() => toast.classList.remove("show"), 1800);
+        });
+      });
+
+      const signupModal = document.getElementById("signup-modal");
+      function openSignupModal() {
+        signupModal.hidden = false;
+        document.body.classList.add("modal-open");
+      }
+      function closeSignupModal() {
+        signupModal.hidden = true;
+        document.body.classList.remove("modal-open");
+      }
+      document.querySelectorAll("[data-signup-trigger]").forEach((trigger) => {
+        trigger.addEventListener("click", (event) => {
+          event.preventDefault();
+          openSignupModal();
+        });
+      });
+      document.querySelectorAll("[data-signup-close]").forEach((trigger) => {
+        trigger.addEventListener("click", closeSignupModal);
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && !signupModal.hidden) {
+          closeSignupModal();
+        }
+      });
+
+      // ---------- Active nav link on scroll ----------
+      const navLinks = document.querySelectorAll(".nav a");
+      const sections = ["informacoes", "kit", "percursos", "regulamento"].map(
+        (id) => document.getElementById(id),
+      );
+      function syncNav() {
+        const y = window.scrollY + 120;
+        let activeId = sections[0]?.id;
+        for (const s of sections) {
+          if (s && s.offsetTop <= y) activeId = s.id;
+        }
+        navLinks.forEach((a) => {
+          a.classList.toggle(
+            "active",
+            a.getAttribute("href") === "#" + activeId,
+          );
+        });
+      }
+      window.addEventListener("scroll", syncNav, { passive: true });
+      syncNav();
+
+      // smooth anchor scroll
+      navLinks.forEach((a) =>
+        a.addEventListener("click", (e) => {
+          const href = a.getAttribute("href");
+          if (href && href.startsWith("#")) {
+            e.preventDefault();
+            const el = document.querySelector(href);
+            if (el) {
+              window.scrollTo({ top: el.offsetTop - 60, behavior: "smooth" });
+            }
+          }
+        }),
+      );
+    </script>
+  </body>
+</html>
