@@ -208,10 +208,14 @@
             </button>
           </div>
           <div class="info-item-wrap">
-            <button class="info-item" data-panel="p-regulamento">
+            <a
+              class="info-item"
+              href="assets/docs/Regulamento Fortaleza 2026.pdf"
+              download="Regulamento Fortaleza 2026.pdf"
+            >
               <span class="chev"></span>
               <span>Regulamento</span>
-            </button>
+            </a>
           </div>
 
           <!-- Panels -->
@@ -235,10 +239,6 @@
           </div>
           <div class="info-panel" id="p-kit">
             <h4>Retirada de Kit</h4>
-            <p>Em breve</p>
-          </div>
-          <div class="info-panel" id="p-regulamento">
-            <h4>Regulamento</h4>
             <p>Em breve</p>
           </div>
         </div>
@@ -382,6 +382,7 @@
       items.forEach((btn) => {
         btn.addEventListener("click", () => {
           const id = btn.dataset.panel;
+          if (!id) return;
           const panel = document.getElementById(id);
           const open = btn.classList.contains("open");
           items.forEach((b) => b.classList.remove("open"));
